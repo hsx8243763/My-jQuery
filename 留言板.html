@@ -210,7 +210,7 @@
 			        <div><textarea id="conBox" class="f-text"  placeholder="请输入内容"></textarea></div>
 			        <div class="tr">
 			            <p>
-			                <!--<span class="countTxt">还能输入</span><strong class="maxNum">140</strong><span>个字</span>-->
+
 			                <input id="sendBtn" type="button" value="" title="快捷键 Ctrl+Enter" />
 			            </p>
 			        </div>
@@ -303,7 +303,6 @@
 					Json.userName = $('#userName')[0].value;
 					Json.content = $('#conBox')[0].value;
 					Json.data = fn(m)+'月'+fn(d)+'日'+" "+fn(h)+':'+fn(min);
-					console.log(Json.data)
 					num++;
 					$(`<li>
 					   <div class="userPic"><img src=${Json.src} /></div>
@@ -317,35 +316,27 @@
 		                    </div>
 		                </div>
 				  	</li>`).appendTo(uls);
+				  	uls  = $('.list').children('ul')
 				})
-				$(uls).children('li').mouseover(function(){
-					$(this).children('.content').children('.times').children('a').css('display','block')
+				$(uls).delegate('li','mouseover',function(){
+					$(this).find('.del').css('display','block')
 				})
-				$(uls).children('li').mouseout(function(){
-					$(this).children('.content').children('.times').children('a').css('display','none')
-				})
-				$('a').click(function(){
-					(this).closest('li').remove();
-					num--;
-					for(var i = 1;i<num+1;i++){
-						arr.push(i)
-					}
-					$('.numer').each(function(index,ele){
-						$(this).text(arr[index]+'楼')
+				$(uls).delegate('li','mouseout',function(){
+					$(this).find('.del').css('display','none');
+					$(this).click(function(){
+						$(this).closest('li').remove();
+						num--;
+						for(var i = 1;i<num+1;i++){
+							arr.push(i)
+						}
+						$('.numer').each(function(index,ele){
+							$(this).text(arr[index]+'楼')
+						})
 					})
 				})
 				function fn(n){
 					return n<10?'0'+n:''+n;
 				}
-				
-				
-//				$('#conBox').keydown(function(ev){
-//					if(ev.keyCode=32){
-//						var numers = 0
-//						var numers = $('#conBox')[0].value.length
-//						$('.maxNum').text($('.maxNum').text()-numers)
-//					}
-//				})
 			</script>
 	</body>
 </html>
