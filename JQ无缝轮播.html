@@ -1,0 +1,74 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>Document</title>  
+    <style>  
+        *{  
+            padding: 0;  
+            margin: 0;  
+        }  
+        ul li{list-style-type: none}  
+        #banner{  
+            width: 800px;  
+            height: 400px;  
+            overflow: hidden;  
+        }  
+        #banner ul{  
+            width: 7680px;  
+            overflow: hidden;  
+        }  
+        #banner ul>li{  
+            width: 800px;  
+            height: 400px;  
+            float: left;  
+        }  
+        img{  
+            max-width: 100%;  
+        }  
+        input{
+        	height: 30px;
+        	width: 100px;
+        	position: absolute;
+        }
+		.right{
+        	left: 450px;
+        	top: 408px;
+        }
+		.left{
+        	left: 270px;
+        	top: 408px;
+        }
+    </style>  
+</head>  
+<body>  
+    <div id="banner">  
+        <ul>  
+            <li><img src="images1/1.jpg" alt="" width="1920px" height="400px"/></li>  
+            <li><img src="images1/2.jpg" alt="" width="1920px" height="400px"/></li>  
+            <li><img src="images1/3.jpg" alt="" width="1920px" height="400px"/></li>  
+            <li><img src="images1/4.jpg" alt="" width="1920px" height="400px"/></li>  
+        </ul>  
+    </div>  
+    <input type="button" value="上一页" class="left"/>  
+    <input type="button" value="下一页" class="right"/>  
+  
+  
+    <script src="../JQuery/jquery-3.1.1.min.js"></script>  
+    <script>  
+        $(function () {  
+            $('.right').click(function () {  
+                $("#banner ul").animate({marginLeft:"-800px"},600, function () {  
+                    $("#banner ul>li").eq(0).appendTo($("#banner ul"));  
+                    $("#banner ul").css('marginLeft','0px');  
+                });  
+            })  
+            $('.left').click(function () {  
+                $("#banner ul").css('marginLeft','-800px');  
+                $("#banner ul>li").eq(3).prependTo($("#banner ul"));  
+                $("#banner ul").animate({marginLeft:"0px"},600);  
+            })  
+        })  
+    </script>  
+</body>  
+</html> 
